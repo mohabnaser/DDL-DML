@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>🎓 SQL </title>
+<title>🎓 SQL المنهج الشامل - بالعربي</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
@@ -359,7 +359,7 @@ body {
 .overlay { display: none; }
 
 /* EXEC ORDER */
-.exec-flow { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1rem 0; }
+.exec-flow { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1rem 0; direction: ltr; }
 .exec-step {
   padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.78rem;
   font-family: 'JetBrains Mono', monospace; font-weight: 600;
@@ -394,10 +394,10 @@ body {
 .progress-fill { height: 100%; background: linear-gradient(90deg, var(--violet), var(--cyan)); border-radius: 3px; transition: width 0.4s; }
 
 /* SUBQUERY LAYERS */
-.subquery-outer { border: 2px solid var(--violet); border-radius: 8px; padding: 0.75rem; position: relative; }
-.subquery-inner { border: 2px solid var(--cyan); border-radius: 6px; padding: 0.75rem; margin-top: 0.5rem; }
+.subquery-outer { border: 2px solid var(--violet); border-radius: 8px; padding: 0.75rem; position: relative; direction: ltr; text-align: left; }
+.subquery-inner { border: 2px solid var(--cyan); border-radius: 6px; padding: 0.75rem; margin-top: 0.5rem; position: relative; }
 .subquery-tag {
-  position: absolute; top: -0.6rem; right: 0.75rem;
+  position: absolute; top: -0.6rem; left: 0.75rem; direction: ltr;
   background: var(--bg); padding: 0 0.4rem;
   font-size: 0.6rem; font-family: 'JetBrains Mono', monospace;
 }
@@ -2347,7 +2347,7 @@ function App() {
       <aside className={`sidebar ${sidebarOpen?'open':''}`}>
         <div className="logo">
           {'<SQL/>'}
-          <span></span>
+          <span>المنهج الشامل بالعربي</span>
         </div>
         {sections.map(sec => (
           <div key={sec.id} className="nav-section">
