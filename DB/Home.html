@@ -3355,11 +3355,11 @@
               <div className="three-col">
                 <div className="constraint-card">
                   <h4>DDL</h4>
-                  <p>بيعرّف وبيغير هيكل قاعدة البيانات نفسها</p>
+                  <p>بيعرّف وبيغير هيكل قاعدة البيانات نفسها (زي DROP اللى بتحذف الهيكل، مش الداتا بس).</p>
                 </div>
                 <div className="constraint-card">
                   <h4>DML</h4>
-                  <p>بيتعامل مع الداتا الجوّه الـ tables</p>
+                  <p>بيتعامل مع الداتا الجوّه الـ tables (زي DELETE اللى بتحذف صفوف من الداتا بس الهيكل بيفضل).</p>
                 </div>
                 <div className="constraint-card">
                   <h4>DCL</h4>
@@ -3370,37 +3370,44 @@
 
             <div className="topic-card" id="sql-notes">
               <div className="topic-title">
-                <span className="icon">📌</span> ملاحظات مهمة في SQL
+                <span className="icon">📌</span> ملاحظات ومفاهيم مهمة
               </div>
-              <div className="three-col">
-                <div
-                  className="constraint-card"
-                  style={{ borderTopColor: "var(--cyan)" }}
-                >
+              <div className="constraint-grid">
+                <div className="constraint-card" style={{ borderTopColor: "var(--cyan)" }}>
                   <h4 style={{ color: "var(--cyan)" }}>Case-Insensitive</h4>
-                  <p>
-                    SQL مش بتفرق بين الحروف الكبيرة والصغيرة. SELECT = select
-                  </p>
+                  <p>SQL مش بتفرق بين الحروف الكبيرة والصغيرة. SELECT = select</p>
                 </div>
-                <div
-                  className="constraint-card"
-                  style={{ borderTopColor: "var(--green)" }}
-                >
-                  <h4 style={{ color: "var(--green)" }}>
-                    Single Quotes للـ Strings
-                  </h4>
+                <div className="constraint-card" style={{ borderTopColor: "var(--green)" }}>
+                  <h4 style={{ color: "var(--green)" }}>Single Quotes للـ Strings</h4>
+                  <p>النصوص والتواريخ لازم بين single quotes.</p>
+                </div>
+                <div className="constraint-card" style={{ borderTopColor: "var(--pink)" }}>
+                  <h4 style={{ color: "var(--pink)" }}>Degree & Cardinality</h4>
                   <p>
-                    النصوص والتواريخ لازم بين single quotes.
+                    <strong>Degree:</strong> هو عدد الأعمدة (Columns).
                     <br />
-                    WHERE Name = 'Ahmed' ✓
+                    <strong>Cardinality:</strong> هو عدد الصفوف (Rows).
                   </p>
                 </div>
-                <div
-                  className="constraint-card"
-                  style={{ borderTopColor: "var(--orange)" }}
-                >
-                  <h4 style={{ color: "var(--orange)" }}>NULL مش صفر</h4>
-                  <p>NULL = قيمة غير معروفة. استخدم IS NULL مش = NULL</p>
+                <div className="constraint-card" style={{ borderTopColor: "var(--violet-light)" }}>
+                  <h4 style={{ color: "var(--violet-light)" }}>Table Storage</h4>
+                  <p>
+                    في معظم الأنظمة (زي SQL Server)، الصفوف بتُخزَّن <strong>مترتبة تصاعدياً (Sorted ascending)</strong> بناءً على الـ Primary Key.
+                  </p>
+                </div>
+                <div className="constraint-card" style={{ borderTopColor: "var(--orange)" }}>
+                  <h4 style={{ color: "var(--orange)" }}>Naming Scope</h4>
+                  <p>
+                    • أسماء الـ Tables: Unique في الـ Schema.
+                    <br />
+                    • أسماء الـ Columns: Unique جوّه الجدول.
+                    <br />
+                    • أسماء الـ Constraints: لازم تكون <strong>Unique على مستوى قاعدة البيانات كلها!</strong>
+                  </p>
+                </div>
+                <div className="constraint-card" style={{ borderTopColor: "var(--red)" }}>
+                  <h4 style={{ color: "var(--red)" }}>NULL مش صفر</h4>
+                  <p>NULL معناها غياب القيمة. استخدم IS NULL عشان تتأكد منها مش =.</p>
                 </div>
               </div>
             </div>
@@ -3505,7 +3512,7 @@
                   {
                     name: "NOT NULL",
                     color: "var(--red)",
-                    desc: "لازم دايماً يبقى فيها قيمة.",
+                    desc: "لازم دايماً يبقى فيها قيمة. (بشكل افتراضي، كل الأعمدة بتسمح بـ NULL ومش Unique لحد ما تحدد العكس).",
                     ex: "Name VARCHAR(45) NOT NULL",
                   },
                   {
@@ -3517,19 +3524,19 @@
                   {
                     name: "UNIQUE",
                     color: "var(--cyan)",
-                    desc: "كل القيم لازم مختلفة.",
+                    desc: "كل القيم لازم مختلفة. بس خلي بالك إن الـ UNIQUE بيسمح بتكرار قيم الـ NULL عادي.",
                     ex: "Name VARCHAR(45) UNIQUE",
                   },
                   {
                     name: "PRIMARY KEY",
                     color: "var(--violet)",
-                    desc: "NOT NULL + UNIQUE. بيعرّف كل row بشكل فريد.",
+                    desc: "NOT NULL + UNIQUE. الجدول ليه Primary Key واحد بس! ولو كان مركب (Composite)، ترتيب الأعمدة بيأثر في التخزين.",
                     ex: "SSN INT PRIMARY KEY",
                   },
                   {
                     name: "FOREIGN KEY",
                     color: "var(--pink)",
-                    desc: "بيربط جدولين ويضمن Referential Integrity.",
+                    desc: "بيربط الجداول ببعض، والجدول ممكن يكون ليه أكتر من Foreign Key عادي جداً.",
                     ex: "REFERENCES Department(DCode)",
                   },
                   {
